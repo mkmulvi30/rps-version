@@ -1,4 +1,6 @@
-let bucket = 0
+input.onButtonPressed(Button.A, function () {
+    basic.showNumber(ScoreCounter)
+})
 input.onGesture(Gesture.Shake, function () {
     bucket = randint(0, 25)
     if (bucket <= 4) {
@@ -11,7 +13,7 @@ input.onGesture(Gesture.Shake, function () {
             `)
     } else if (bucket >= 5 && bucket <= 20) {
         basic.showLeds(`
-            # . . # #
+            # . . . #
             . # . # .
             . . # . .
             . . # . .
@@ -27,6 +29,7 @@ input.onGesture(Gesture.Shake, function () {
             . # # # .
             . . . . .
             `)
+        game.removeLife(1)
     } else if (bucket >= 21 && bucket < 25) {
         basic.showLeds(`
             # # . # #
@@ -35,7 +38,7 @@ input.onGesture(Gesture.Shake, function () {
             . # # # .
             # # . # #
             `)
-    } else {
+    } else if (bucket == 25) {
         for (let index = 0; index < 2; index++) {
             basic.showLeds(`
                 . . # . .
@@ -59,5 +62,15 @@ input.onGesture(Gesture.Shake, function () {
                 . . . . .
                 `)
         }
+        ScoreCounter += 1
+    }
+})
+let bucket = 0
+let ScoreCounter = 0
+ScoreCounter = 0
+let lives = 3
+basic.forever(function () {
+    if (ScoreCounter == 3 || lives == 0) {
+        game.gameOver()
     }
 })
