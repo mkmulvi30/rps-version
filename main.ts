@@ -29,7 +29,7 @@ input.onGesture(Gesture.Shake, function () {
             . # # # .
             . . . . .
             `)
-        game.removeLife(1)
+        lives += -1
     } else if (bucket >= 21 && bucket < 25) {
         basic.showLeds(`
             # # . # #
